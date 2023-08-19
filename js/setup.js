@@ -1,8 +1,27 @@
 let pokemons = [' '];
 const listaPokemon = document.getElementById('pokedexl_ist_render_container')
 
-/**fetch pokemon name and id */
+/**obtener el nombre y la identificación de Pokémon */
+
 async function getAllNames() {
+	let url = "https://pokeapi.co/api/v2/pokemon/?limit=1010";
+	let response = await fetch(url);
+	let responseAsJson = await response.json();
+	pokemons = await Promise.all(
+		responseAsJson.results.map((pokemon) =>
+			fetch(pokemon.url)
+				.then((response) => response.json())
+				.then((response) => response),
+		),
+	);
+	pokemons.forEach((pokemon) => {
+		renderCard(pokemon);
+	});
+
+	loadingCompletion();
+}
+
+/**async function getAllNames() {
     let url = 'https://pokeapi.co/api/v2/pokemon/?limit=1010';
     let response = await fetch(url);
     let responseAsJson = await response.json();
@@ -28,9 +47,9 @@ async function getAllNames() {
     }
 
     getAllTypes();
-};
+};*/
 
-/**fetch pokemon types */
+/**buscar tipos de pokemon */
 async function getAllTypes() {
     for (let i = 0; i < 18; i++) {
         let url = 'https://pokeapi.co/api/v2/type/' + (i + 1)
@@ -51,7 +70,7 @@ async function getAllTypes() {
     loadingCompletion();
 };
 
-/**hide loading div after completion */
+/**ocultar div de carga después de completar */
 function loadingCompletion() {
     const loadingDiv = document.getElementById('loading-div');
     loadingDiv.classList.add('hideLoading');

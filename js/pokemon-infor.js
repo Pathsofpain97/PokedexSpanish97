@@ -1,4 +1,4 @@
-/**open info when pokemon from list is clicked */
+/**abrir información cuando se hace clic en pokemon de la lista */
 function openInfo(id) {
     document.getElementById('current-pokemon-empty').classList.add('hide');
 
@@ -15,7 +15,7 @@ function openInfo(id) {
     };
 };
 
-/**fetch pokemon infos */
+/**obtener información de pokemon */
 async function fetchPokemonInfo(id) {
     const urlPokemon = 'https://pokeapi.co/api/v2/pokemon/' + id;
     const urlSpecies = 'https://pokeapi.co/api/v2/pokemon-species/' + id;
@@ -40,7 +40,7 @@ async function fetchPokemonInfo(id) {
     };
 };
 
-/**update pokemon image & adjust height to varying sprite dimensions ---> (to position directly above info) */
+/**actualice la imagen de pokemon y ajuste la altura a diferentes dimensiones de sprite ---> (para colocar directamente encima de la información) */
 function updateCurrentPokemonImage(id) {
 
     const currentPokemonImage = document.getElementById('current-pokemon-image');
@@ -58,7 +58,7 @@ function updateCurrentPokemonImage(id) {
     };
 };
 
-/**setup pokemon id, name, types, height, weight and description */
+/**configurar pokemon id, nombre, tipos, altura, peso y descripción */
 function setupPokemonAbout(pokemon, id, species) {
     document.getElementById('current-pokemon-info').classList.remove('hide');
     document.getElementById('current-pokemon-id').innerHTML = 'N° ' + pokemon.id;
@@ -75,7 +75,7 @@ function setupPokemonAbout(pokemon, id, species) {
     };
 };
 
-/**setup pokemon stats */
+/**configurar las estadísticas de Pokémon */
 function setupPokemonStats(pokemon) {
     document.getElementById('current-pokemon-stats-atk').innerHTML = pokemon.stats[0].base_stat;
     document.getElementById('current-pokemon-stats-hp').innerHTML = pokemon.stats[1].base_stat;
@@ -86,7 +86,7 @@ function setupPokemonStats(pokemon) {
     document.getElementById('current-pokemon-stats-total').innerHTML = pokemon.stats[0].base_stat + pokemon.stats[1].base_stat + pokemon.stats[2].base_stat + pokemon.stats[3].base_stat + pokemon.stats[4].base_stat + pokemon.stats[5].base_stat;
 };
 
-/**setup pokemon abilities */
+/**configurar habilidades de pokemon */
 function setupPokemonAbilities(pokemon) {
     document.getElementById('current-pokemon-abilitiy-0').innerHTML = dressUpPayloadValue(pokemon.abilities[0].ability.name);
     if(pokemon.abilities[1]){
@@ -97,7 +97,7 @@ function setupPokemonAbilities(pokemon) {
     };
 };
 
-/**setup evolution chain (all 3 evolutions) */
+/**configuración de la cadena de evolución (las 3 evoluciones) */
 function setupEvolutionChain(evolutionChain) {
     const chain = evolutionChain.chain
     const chainContainer =  document.getElementById('current-pokemon-evolution-chain-container')
@@ -123,7 +123,7 @@ function setupEvolutionChain(evolutionChain) {
     };
 };
 
-/**setup evolution images and level*/
+/**configurar imágenes de evolución y nivel*/
 function setupEvolution(chain, no) {
     const chainImages = [document.getElementById('current-pokemon-evolution-0'), document.getElementById('current-pokemon-evolution-1'), document.getElementById('current-pokemon-evolution-2')];
     const chainLevels = [document.getElementById('current-pokemon-evolution-level-0'), document.getElementById('current-pokemon-evolution-level-1')];
@@ -140,7 +140,7 @@ function setupEvolution(chain, no) {
     };
 };
 
-/**filter id from species url */
+/**id de filtro de url de especie */
 function filterIdFromSpeciesURL(url){
     return url.replace('https://pokeapi.co/api/v2/pokemon-species/', '').replace('/', '');
 };
@@ -185,7 +185,7 @@ function closePokemonInfo(){
     slideOutPokemonInfo();
 };
 
-/**make current pokemon container visible after resizing to < 1100px width && show scrollbar*/
+/**hacer visible el contenedor de pokemon actual después de cambiar el tamaño a < 1100px de ancho && mostrar la barra de desplazamiento*/
 window.addEventListener('resize', function(){
     if(document.getElementById('current-pokemon-container').classList.contains('slide-out')){
         document.getElementById('current-pokemon-container').classList.replace('slide-out', 'slide-in');
@@ -199,7 +199,7 @@ window.addEventListener('resize', function(){
 
 
 
-/**------------------------- Animations ---------------------------------------------------------------- */
+/**------------------------- Animaciones ---------------------------------------------------------------- */
 function slideOutPokemonInfo(){
     document.getElementById('current-pokemon-container').classList.remove('slide-in');
     document.getElementById('current-pokemon-container').classList.add('slide-out');

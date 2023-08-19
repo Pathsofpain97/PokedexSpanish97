@@ -24,7 +24,7 @@ const typeColors = {
     'shadow': '#0E2E4C'
 };
 
-/**update pokemon list to */
+/**actualizar la lista de pokemon a */
 function updatePokemonList() {
     if (currentlyShowingAmount <= maxIndex) {
         renderPokemonListItem(currentlyShowingAmount);
@@ -40,7 +40,7 @@ function renderCard(data){
         </div>`);
 }
 
-/**render */
+/**renderizar */
 function renderPokemonListItem(index) {
     if (currentList[index]) {
         listaPokemon.insertAdjacentHTML('beforeend', `<div onclick="openInfo(${currentList[index].id})" class="pokemon-render-result-container container center column">
@@ -64,7 +64,7 @@ function increaseMaxIndex(by) {
     };
 };
 
-/**get type containers for pokemon infos */
+/**obtener tipos de contenedores para información de pokemon */
 function getTypeContainers(typesArray) {
     let htmlToReturn = '<div class="row">';
     typesArray.map(e => {
@@ -78,7 +78,7 @@ function getTypeContainers(typesArray) {
     return htmlToReturn + '</div>';
 };
 
-/**on search input keydown*/
+/**al pulsar la tecla de entrada de búsqueda*/
 function search() {
     setTimeout(function () {
         let searchResults = [];
@@ -109,7 +109,7 @@ window.addEventListener('scroll', function () {
     updateBackToTopVisibility();
 });
 
-/**add new scroll pokemon when bottom is reached */
+/**agregue un nuevo pokemon de desplazamiento cuando se alcance el fondo */
 function addNewScrollPokemon() {
     if (window.scrollY + 100 >= document.documentElement.scrollHeight - document.documentElement.clientHeight) {
         increaseMaxIndex(30);
@@ -117,7 +117,7 @@ function addNewScrollPokemon() {
     };
 };
 
-/**make back to top button visible */
+/**hacer visible el botón de volver al principio */
 function updateBackToTopVisibility() {
     if(window.scrollY > window.innerHeight) {
         document.getElementById('back-to-top-button').classList.remove('hide');
@@ -131,7 +131,7 @@ function backToTop() {
 };
 
 
-/**dress up payload value */
+/**disfrazar el valor de la carga útil */
 function dressUpPayloadValue(texto) {
     let splitStr = texto.toLowerCase().split('-');
     for (let i = 0; i < splitStr.length; i++) {
